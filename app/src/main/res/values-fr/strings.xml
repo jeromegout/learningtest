@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">It\'s up to You</string>
+    <string name="no_students">Aucun élève</string>
+    <string name="class_name_label">NOM DE LA CLASSE</string>
+    <string name="first_name_label">PRENOM</string>
+    <string name="last_name_label">NOM</string>
+    <string name="no_classes">Aucune classe</string>
+    <string name="very_good_desc">Très bien</string>
+    <string name="good_dec">Bien</string>
+    <string name="bad_desc">Mauvais</string>
+    <string name="very_bad_desc">Très mauvais</string>
+    <string name="no_grades_label">Aucune note</string>
+    <string name="edit_label">Modifier</string>
+    <string name="grade_icon_desc">Icone note</string>
+    <string name="student_icon_desc">Icone élève</string>
+    <string name="random_draw_action_label">Tirage</string>
+    <string name="delete_action_label">Supprimer</string>
+    <string name="add_student_action_label">Ajouter élève</string>
+    <string name="clean_grades_action_label">Effacer les notes</string>
+    <string name="add_class_action_label">Nouvelle classe</string>
+    <string name="again_action_label">Recommencer</string>
+    <string name="done_action_label">Valider</string>
+    <string name="unnamed_class">Sans nom</string>
+    <string name="delete_grades_title">\"Effacer les notes : %s\"</string>
+    <string name="delete_grades_desc">Etes-vous sûr de vouloir supprimer les notes de cette classe ?</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Annuler</string>
+    <string name="delete_class_title">Supprimer : %s</string>
+    <string name="delete_class_message">Etes-vous sûr de vouloir supprimer cette classe et tous ses élèves ?</string>
+    <string name="add_student_title">Nouvel élève</string>
+    <string name="delete_student_title">Supprimer : %s</string>
+    <string name="delete_student_message">Etes-vous sûr de vouloir supprimer cet élève ?</string>
+</resources>

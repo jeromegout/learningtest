@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">It\'s up to You</string>
+    <string name="no_students">No students</string>
+    <string name="class_name_label">CLASS NAME</string>
+    <string name="first_name_label">FIRST NAME</string>
+    <string name="last_name_label">LAST NAME</string>
+    <string name="no_classes">No classes</string>
+    <string name="very_good_desc">Very good</string>
+    <string name="good_dec">Good</string>
+    <string name="bad_desc">Bad</string>
+    <string name="very_bad_desc">Very bad</string>
+    <string name="no_grades_label">No grades</string>
+    <string name="edit_label">Edit</string>
+    <string name="grade_icon_desc">Grade icon</string>
+    <string name="student_icon_desc">Student icon</string>
+    <string name="random_draw_action_label">Randow draw</string>
+    <string name="delete_action_label">Delete</string>
+    <string name="add_student_action_label">Add a student</string>
+    <string name="clean_grades_action_label">Delete grades</string>
+    <string name="add_class_action_label">Add a class</string>
+    <string name="again_action_label">Draw again</string>
+    <string name="done_action_label">Done</string>
+    <string name="unnamed_class">Unnamed</string>
+    <string name="delete_grades_title">Delete grades : %s</string>
+    <string name="delete_grades_desc">Do you really want to delete student grades of this class?</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete_class_title">Delete: %s</string>
+    <string name="delete_class_message">Do you really want to delete this class and its students?</string>
+    <string name="add_student_title">New student</string>
+    <string name="delete_student_title">Delete : %s</string>
+    <string name="delete_student_message">Do you really want to delete this student?</string>
+</resources>

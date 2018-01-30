@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:title="@string/delete_action_label"
+          android:icon="@drawable/ic_delete"
+          app:showAsAction="always"
+          android:id="@+id/delete_class"
+          />
+
+    <item android:title="@string/add_student_action_label"
+          android:icon="@drawable/ic_add_person"
+          app:showAsAction="ifRoom"
+          android:id="@+id/add_student"
+        />
+
+    <item android:title="@string/clean_grades_action_label"
+          android:icon="@drawable/ic_reset"
+          app:showAsAction="never"
+          android:id="@+id/reset_grades"
+        />
+</menu>
