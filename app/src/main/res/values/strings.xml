@@ -30,4 +30,5 @@
     <string name="add_student_title">New student</string>
     <string name="delete_student_title">Delete : %s</string>
     <string name="delete_student_message">Do you really want to delete this student?</string>
+    <string name="student_add_grade_action_label">Add Grade</string>
 </resources>

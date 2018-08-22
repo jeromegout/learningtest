@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.jeromegout.learningtest.R;
 import com.jeromegout.learningtest.model.Grade;
+import com.jeromegout.learningtest.model.Model;
 import com.jeromegout.learningtest.model.Student;
 
 /**
@@ -18,7 +19,7 @@ import com.jeromegout.learningtest.model.Student;
  */
 
 
-public class GradeAdapter extends RecyclerView.Adapter<GradeAdapter.Holder> {
+public class GradeAdapter extends RecyclerView.Adapter<GradeAdapter.Holder> implements Model.OnStudentChangedListener {
 
     private final Student student;
     private final Context context;
@@ -61,5 +62,22 @@ public class GradeAdapter extends RecyclerView.Adapter<GradeAdapter.Holder> {
     public GradeAdapter(Context context, Student student) {
         this.student = student;
         this.context = context;
+    }
+
+    @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+        Model.instance.addListener(this);
+    }
+
+    @Override
+    public void onDetachedFromRecyclerView(RecyclerView recyclerView) {
+        super.onDetachedFromRecyclerView(recyclerView);
+        Model.instance.removeListener(this);
+    }
+
+    @Override
+    public void onStudentChanged(Student student) {
+        notifyDataSetChanged();
     }
 }

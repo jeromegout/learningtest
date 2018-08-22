@@ -1,19 +1,26 @@
 package com.jeromegout.learningtest.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
 import com.jeromegout.learningtest.EmptyRecyclerView;
 import com.jeromegout.learningtest.R;
 import com.jeromegout.learningtest.adapters.GradeAdapter;
+import com.jeromegout.learningtest.model.Grade;
 import com.jeromegout.learningtest.model.Model;
 import com.jeromegout.learningtest.model.Student;
 
 public class StudentActivity extends BackActivity {
+
+    private Student student;
+    private String className;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +31,8 @@ public class StudentActivity extends BackActivity {
         if(extras == null) return;
         final String firstName = extras.getString("studentFirsName");
         final String lastName = extras.getString("studentLastName");
-        String className = extras.getString("className");
-        Student student = Model.instance.getStudent(className, firstName, lastName);
+        className = extras.getString("className");
+        student = Model.instance.getStudent(className, firstName, lastName);
 
         ActionBar actionBar = getSupportActionBar();
         if(actionBar != null) actionBar.setTitle(firstName);
@@ -46,5 +53,25 @@ public class StudentActivity extends BackActivity {
         recyclerView.setEmptyView(emptyView);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         recyclerView.setAdapter(new GradeAdapter(this, student));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_student, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.add_grade:
+                Intent intent = new Intent(this, StudentGradeActivity.class);
+                intent.putExtra("studentFirsName", student.getFirstName());
+                intent.putExtra("studentLastName", student.getLastName());
+                intent.putExtra("className", className);
+                startActivity(intent);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.jeromegout.learningtest.R;
 import com.jeromegout.learningtest.model.Grade;
-import com.jeromegout.learningtest.model.Klass;
 import com.jeromegout.learningtest.model.Model;
 import com.jeromegout.learningtest.model.Student;
 
@@ -19,25 +18,29 @@ import com.jeromegout.learningtest.model.Student;
  *
  */
 
-public class RandomDrawActivity extends BackActivity implements View.OnClickListener {
+public class StudentGradeActivity extends BackActivity implements View.OnClickListener {
 
-    private Klass klass;
-    private Student winner;
-    private TextView firstName;
-    private TextView lastName;
+    private Student student;
     private int currentGrade;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_student_grade);
-        if (getIntent().getExtras() != null) {
-            klass = Model.instance.getClass(getIntent().getStringExtra("className"));
-        }
+        Bundle extras = getIntent().getExtras();
+        if(extras == null) return;
+        final String fn = extras.getString("studentFirsName");
+        final String ln = extras.getString("studentLastName");
+        String className = extras.getString("className");
+        student = Model.instance.getStudent(className, fn, ln);
+
         ActionBar actionBar = getSupportActionBar();
         if(actionBar != null) actionBar.setTitle("");
-        firstName = findViewById(R.id.student_first_name_id);
-        lastName = findViewById(R.id.student_last_name_id);
+        TextView firstName = findViewById(R.id.student_first_name_id);
+        firstName.setText(fn);
+        TextView lastName = findViewById(R.id.student_last_name_id);
+        lastName.setText(ln);
+
         ImageView veryBadButton = findViewById(R.id.very_bad_id);
         veryBadButton.setOnClickListener(this);
         ImageView badButton = findViewById(R.id.bad_id);
@@ -46,22 +49,12 @@ public class RandomDrawActivity extends BackActivity implements View.OnClickList
         goodButton.setOnClickListener(this);
         ImageView veryGoodButton = findViewById(R.id.very_good_id);
         veryGoodButton.setOnClickListener(this);
-        randomDraw();
-    }
-
-    private void randomDraw() {
         currentGrade = -1;
-        winner = klass.randomDraw();
-        if(winner != null) {
-            firstName.setText(winner.getFirstName());
-            lastName.setText(winner.getLastName());
-        }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_randow_draw, menu);
-        menu.findItem(R.id.random_again);
+        getMenuInflater().inflate(R.menu.menu_student_grade, menu);
         MenuItem done = menu.findItem(R.id.done);
         done.setVisible(currentGrade >= 0);
         return super.onCreateOptionsMenu(menu);
@@ -70,13 +63,8 @@ public class RandomDrawActivity extends BackActivity implements View.OnClickList
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.random_again:
-                if(currentGrade >= 0) findGradeIcon(currentGrade).setImageDrawable(Grade.getGradeDrawable(this, currentGrade, false));
-                invalidateOptionsMenu();
-                randomDraw();
-                return true;
             case R.id.done:
-                Model.instance.addStudentGrade(winner, currentGrade);
+                Model.instance.addStudentGrade(student, currentGrade);
                 finish();
                 return true;
         }
