@@ -13,14 +13,14 @@ import android.widget.TextView;
 import com.jeromegout.learningtest.EmptyRecyclerView;
 import com.jeromegout.learningtest.R;
 import com.jeromegout.learningtest.adapters.GradeAdapter;
-import com.jeromegout.learningtest.model.Grade;
 import com.jeromegout.learningtest.model.Model;
 import com.jeromegout.learningtest.model.Student;
 
-public class StudentActivity extends BackActivity {
+public class StudentActivity extends BackActivity implements Model.OnStudentChangedListener {
 
     private Student student;
     private String className;
+    private TextView score;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,18 +41,32 @@ public class StudentActivity extends BackActivity {
         lastNameText.setText(student.getLastName());
         TextView firstNameText = findViewById(R.id.student_first_name_id);
         firstNameText.setText(student.getFirstName());
-        TextView score = findViewById(R.id.student_global_score_id);
-        if(student.getScore() >= 0) {
-            score.setText(String.format(Model.getCurrentLocale(this),"%d", student.getScore()));
-        } else {
-            score.setVisibility(View.GONE);
-        }
+        score = findViewById(R.id.student_global_score_id);
+        setStudentScore();
         EmptyRecyclerView recyclerView = findViewById(R.id.emptyRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         View emptyView = findViewById(R.id.no_grade_id);
         recyclerView.setEmptyView(emptyView);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         recyclerView.setAdapter(new GradeAdapter(this, student));
+        //- listen student changes (if grades are modified)
+        Model.instance.addListener(this);
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //- remove useless listener
+        Model.instance.removeListener(this);
+    }
+
+    private void setStudentScore() {
+        if(student.getScore() >= 0) {
+            score.setText(String.format(Model.getCurrentLocale(this),"%d", student.getScore()));
+        } else {
+            score.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -73,5 +87,10 @@ public class StudentActivity extends BackActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onStudentChanged(Student student) {
+        setStudentScore();
     }
 }
