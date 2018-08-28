@@ -84,14 +84,14 @@ public class EditStudentActivity extends BackActivity {
                 .setTitle(String.format(getString(R.string.delete_student_title), student2Edit.getFirstName()))
                 .setIcon(R.drawable.ic_person)
                 .setMessage(getString(R.string.delete_student_message))
-                .setPositiveButton("OK",
+                .setPositiveButton(getString(R.string.ok),
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 Model.instance.removeStudent(className, student2Edit);
                                 finish();
                             }
                         })
-                .setNegativeButton("Annuler",
+                .setNegativeButton(getString(R.string.cancel),
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 dialog.cancel();

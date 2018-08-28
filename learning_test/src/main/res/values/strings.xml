@@ -22,7 +22,7 @@
     <string name="done_action_label">Done</string>
     <string name="unnamed_class">Unnamed</string>
     <string name="delete_grades_title">Delete grades : %s</string>
-    <string name="delete_grades_desc">Do you really want to delete student grades of this class?</string>
+    <string name="delete_grades_desc">Do you really want to delete students grades of this class?</string>
     <string name="ok">Ok</string>
     <string name="cancel">Cancel</string>
     <string name="delete_class_title">Delete: %s</string>
@@ -31,4 +31,6 @@
     <string name="delete_student_title">Delete : %s</string>
     <string name="delete_student_message">Do you really want to delete this student?</string>
     <string name="student_add_grade_action_label">Add Grade</string>
+    <string name="delete_grade_title">Delete grade</string>
+    <string name="delete_grade_message">Do you really want to delete this grade?</string>
 </resources>

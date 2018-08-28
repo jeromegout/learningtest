@@ -31,4 +31,6 @@
     <string name="delete_student_title">Supprimer : %s</string>
     <string name="delete_student_message">Etes-vous sûr de vouloir supprimer cet élève ?</string>
     <string name="student_add_grade_action_label">Ajouter note</string>
+    <string name="delete_grade_title">Effacer note</string>
+    <string name="delete_grade_message">Etes-vous sûr de vouloir supprimer cette note ?</string>
 </resources>

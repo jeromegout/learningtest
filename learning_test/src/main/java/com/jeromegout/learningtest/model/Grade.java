@@ -30,9 +30,13 @@ public class Grade {
 
     Grade(int gradeRank) {
         //- unknown grade means very good ;-)
-        if(gradeRank < 0 || gradeRank > 3) gradeRank = 3;
+        if(gradeRank < 0 || gradeRank > 3) this.gradeRank = 3;
         this.gradeRank = gradeRank;
         this.date = Calendar.getInstance().getTimeInMillis();
+    }
+
+    public void setGradeRank(int rank) {
+        this.gradeRank = rank;
     }
 
     public String getHumanReadableDate() {
@@ -41,7 +45,7 @@ public class Grade {
         return DateFormat.getDateTimeInstance().format(cal.getTime());
     }
 
-    long getDate() {
+    public long getDate() {
         return date;
     }
 

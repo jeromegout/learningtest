@@ -63,6 +63,7 @@ public class StudentActivity extends BackActivity implements Model.OnStudentChan
 
     private void setStudentScore() {
         if(student.getScore() >= 0) {
+            score.setVisibility(View.VISIBLE);
             score.setText(String.format(Model.getCurrentLocale(this),"%d", student.getScore()));
         } else {
             score.setVisibility(View.GONE);
@@ -83,10 +84,20 @@ public class StudentActivity extends BackActivity implements Model.OnStudentChan
                 intent.putExtra("studentFirsName", student.getFirstName());
                 intent.putExtra("studentLastName", student.getLastName());
                 intent.putExtra("className", className);
-                startActivity(intent);
+                startActivityForResult(intent, 101);
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == 101) {
+            if(resultCode == RESULT_OK){
+                int rank = data.getIntExtra("gradeRank", 3); //- default rank is "very good"
+                Model.instance.addStudentGrade(student, rank);
+            }
+        }
     }
 
     @Override

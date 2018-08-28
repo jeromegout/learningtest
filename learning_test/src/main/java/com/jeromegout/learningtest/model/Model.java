@@ -18,6 +18,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
@@ -274,6 +275,41 @@ public class Model {
         student.getKlass().updateWeights(student);
         notifyStudentChange(student);
         saveModel();
+    }
+
+    public void removeStudentGrade(Student student, long date) {
+        boolean removed = false;
+        List<Grade> grades = student.getGrades();
+        for (Iterator<Grade> it = grades.iterator(); it.hasNext();) {
+            Grade grade = it.next();
+            if(grade.getDate() == date) {
+                it.remove();
+                removed = true;
+                break; //- only one grade at a given date
+            }
+        }
+        //- only update the model if remove has been performed
+        if(removed) {
+            notifyStudentChange(student);
+            saveModel();
+        }
+    }
+
+    public void editStudentGrade(Student student, long date, int grade) {
+        boolean edited = false;
+        List<Grade> grades = student.getGrades();
+        for (Iterator<Grade> it = grades.iterator(); it.hasNext();) {
+            Grade g = it.next();
+            if (g.getDate() == date) {
+                g.setGradeRank(grade);
+                edited = true;
+            }
+        }
+        //- only update the model if edit has actually performed
+        if (edited) {
+            notifyStudentChange(student);
+            saveModel();
+        }
     }
 
     public void resetGradesOf(Klass klass) {

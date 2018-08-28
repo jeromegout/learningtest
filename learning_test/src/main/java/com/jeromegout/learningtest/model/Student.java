@@ -82,6 +82,10 @@ public class Student implements Comparable<Student> {
         return Model.instance.getClass(className);
     }
 
+    public String getClassName(){
+        return className;
+    }
+
     void setClassName(String className) {
         this.className = className;
     }
@@ -127,5 +131,12 @@ public class Student implements Comparable<Student> {
 
     void resetWeight() {
         this.weight = DEFAULT_WEIGHT;
+    }
+
+    public Grade getGrade(Long date) {
+        for (Grade grade : grades) {
+            if(grade.getDate() == date) return grade;
+        }
+        return null;
     }
 }

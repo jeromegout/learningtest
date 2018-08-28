@@ -1,5 +1,6 @@
 package com.jeromegout.learningtest.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.view.Menu;
@@ -64,7 +65,9 @@ public class StudentGradeActivity extends BackActivity implements View.OnClickLi
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.done:
-                Model.instance.addStudentGrade(student, currentGrade);
+                Intent data = new Intent();
+                data.putExtra("gradeRank", currentGrade);
+                setResult(RESULT_OK, data);
                 finish();
                 return true;
         }
