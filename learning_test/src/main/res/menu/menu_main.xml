@@ -7,4 +7,9 @@
           app:showAsAction="always"
           android:id="@+id/add_class"
         />
+    <item android:title="@string/info_action_label"
+          android:icon="@drawable/ic_info"
+          app:showAsAction="ifRoom"
+          android:id="@+id/info"
+        />
 </menu>

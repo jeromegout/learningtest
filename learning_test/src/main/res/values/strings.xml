@@ -33,4 +33,5 @@
     <string name="student_add_grade_action_label">Add Grade</string>
     <string name="delete_grade_title">Delete grade</string>
     <string name="delete_grade_message">Do you really want to delete this grade?</string>
+    <string name="info_action_label">Information</string>
 </resources>
